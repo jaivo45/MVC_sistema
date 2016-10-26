@@ -7,7 +7,7 @@ package models;
 
 /**
  *
- * @author lupita
+ * @author lupit
  */
 public class ModelCliente {
 
