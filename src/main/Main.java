@@ -13,7 +13,7 @@ public class Main {
         CustomersView customersView = new CustomersView();
         CustomersController customersController = new CustomersController(customersModel, customersView);
         
-        Model_clientes suppliersModel = new Model_clientes();
+        Model_Clientes suppliersModel = new Model_Clientes();
         View_Proveedor suppliersView = new View_Proveedor();
         Controller_Proveedor suppliersController = new Controller_Proveedor(suppliersModel, suppliersView);
         
