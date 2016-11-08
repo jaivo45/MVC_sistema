@@ -14,7 +14,7 @@ public class MainController implements ActionListener {
     
     MainView mainView;
     CustomersView customersView;
-    View_Proveedor suppliersView;
+    View_clientes suppliersView;
     View_productos productsView;
     View_login viewLogin;
     

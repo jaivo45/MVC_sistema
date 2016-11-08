@@ -42,10 +42,14 @@ public class View_productos extends javax.swing.JPanel {
         jT_compra = new javax.swing.JTextField();
         jT_existencia = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        j_Tabla = new javax.swing.JTable();
         jbtn_quitar = new javax.swing.JButton();
         jbtn_modificar = new javax.swing.JButton();
         jbtn_buscar = new javax.swing.JButton();
+        jbtn_anterior = new javax.swing.JButton();
+        jbtn_siguiente = new javax.swing.JButton();
+        jbtn_fin = new javax.swing.JButton();
+        jbtn_inicio = new javax.swing.JButton();
 
         jLabel1.setBackground(new java.awt.Color(0, 121, 107));
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -82,9 +86,9 @@ public class View_productos extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setBackground(new java.awt.Color(204, 204, 255));
-        jTable1.setBorder(new javax.swing.border.MatteBorder(null));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        j_Tabla.setBackground(new java.awt.Color(204, 204, 255));
+        j_Tabla.setBorder(new javax.swing.border.MatteBorder(null));
+        j_Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -95,7 +99,7 @@ public class View_productos extends javax.swing.JPanel {
                 "Producto", "Descripcion", "Existencia ", "Precio venta", "Precio compra"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(j_Tabla);
 
         jbtn_quitar.setText("QUITAR");
 
@@ -107,6 +111,14 @@ public class View_productos extends javax.swing.JPanel {
                 jbtn_buscarActionPerformed(evt);
             }
         });
+
+        jbtn_anterior.setText("<");
+
+        jbtn_siguiente.setText(">");
+
+        jbtn_fin.setText(">l");
+
+        jbtn_inicio.setText("l<");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,8 +132,19 @@ public class View_productos extends javax.swing.JPanel {
                 .addGap(55, 55, 55)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(225, 225, 225))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtn_inicio)
+                        .addGap(76, 76, 76)
+                        .addComponent(jbtn_anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(jbtn_siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(104, 104, 104)
+                        .addComponent(jbtn_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(178, 178, 178))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,10 +196,19 @@ public class View_productos extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtn_fin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtn_siguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtn_anterior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -237,10 +269,14 @@ public class View_productos extends javax.swing.JPanel {
     public javax.swing.JTextField jT_existencia;
     public javax.swing.JTextField jT_idproducto;
     public javax.swing.JTextField jT_venta;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable j_Tabla;
     public javax.swing.JToggleButton jb_guarda;
+    public javax.swing.JButton jbtn_anterior;
     public javax.swing.JButton jbtn_buscar;
+    public javax.swing.JButton jbtn_fin;
+    public javax.swing.JButton jbtn_inicio;
     public javax.swing.JButton jbtn_modificar;
     public javax.swing.JButton jbtn_quitar;
+    public javax.swing.JButton jbtn_siguiente;
     // End of variables declaration//GEN-END:variables
 }

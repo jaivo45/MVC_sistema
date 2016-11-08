@@ -55,7 +55,7 @@ public class MainView extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/08.jpg"))); // NOI18N
 
-        jLabel1.setText("TODO LO QUE VUSCA LO TENEMOS");
+        jLabel1.setText("TODO LO QUE BUSCA LO TENEMOS");
 
         jmb_menu.setBackground(new java.awt.Color(0, 121, 107));
         jmb_menu.setBorder(null);

@@ -238,7 +238,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TODO LO QUE VUSCA LO TENEMOS"/>
+        <Property name="text" type="java.lang.String" value="TODO LO QUE BUSCA LO TENEMOS"/>
       </Properties>
     </Component>
   </SubComponents>
