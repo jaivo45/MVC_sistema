@@ -1,3 +1,4 @@
+
 package models;
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -16,14 +17,15 @@ import net.proteanit.sql.JTableUpdateDb;
  * @author jaivo
  */
 public class Model_prductos {
- private Connection conexion;
-    private Statement st;
-    private ResultSet rs;
-    
+ //private Connection conexion;
+    //private Statement st;
+    //private ResultSet rs;
+        private final DBConnection conection = new DBConnection(3306,"localhost", "sistema", "root", "");
+    private int idproducto;
     private String producto;
     private String descripcion;
-    private int compra;
-    private int venta;
+    private double compra;
+    private double venta;
     private int existencia;
     
       public  DefaultTableModel tableModel = new DefaultTableModel(new String [] {"id_producto", "producto","descripcion","precio_compra","precio_venta","existencia"}, 0);
@@ -71,7 +73,7 @@ public class Model_prductos {
     /**
      * @return the compra
      */
-    public int getCompra() {
+    public double getCompra() {
         return compra;
     }
 
@@ -85,7 +87,7 @@ public class Model_prductos {
     /**
      * @return the venta
      */
-    public int getVenta() {
+    public double getVenta() {
         return venta;
     }
 
@@ -109,10 +111,22 @@ public class Model_prductos {
     public void setExistencia(int existencia) {
         this.existencia = existencia;
     }
+    
+    /**
+     * @return the idproducto
+     */
+    public int getIdproducto() {
+        return idproducto;
+    }
 
+    /**
+     * @param idproducto the idproducto to set
+     */
+    public void setIdproducto(int idproducto) {
+        this.idproducto = idproducto;
+    }
     
     
-    private final DBConnection conection = new DBConnection(3306,"localhost", "sistema", "root", "");
     
     
    /* public void Conectar() {
@@ -151,54 +165,30 @@ public class Model_prductos {
         setValues();
     }
     
-   public void guarda(){
-       conection.executeUpdate("Insert into productos (producto,descripcion,precio_compra,precio_venta,existencia)" + " values ('" + getProducto() + "','" + getDescripcion() + "','" + getCompra() + "','" + getVenta() + "','" + getExistencia() + "')");
-       setValues();
-   }
-
+   
+  
 
    public void initValues(){
-        conection.executeQuery("SELECT idContacto, producto, descripcion, precio_compra, Precio_venta, existencia FROM sistema;");
+        conection.executeQuery("SELECT id_producto, producto, descripcion, precio_compra, Precio_venta, existencia FROM productos;");
         conection.moveNext();
         setValues();
     }
-   public void editar(){
-       conection.executeUpdate("update productos set producto");
-   }
-    public void setValues(){
+   
+  
+   
+   public void setValues(){
+       this.idproducto=(conection.getInteger("id_producto"));
         this.producto = conection.getString("producto");
         this.descripcion = conection.getString("descripcion");
         this.compra = conection.getInteger("precio_compra");
         this.venta = conection.getInteger("Precio_venta");
-        this.existencia = conection.getInteger("existencia");          
-    }
-    
-  
-    
-     public void borra() {
-         this.setProducto("");
-         this.setDescripcion("");
-         this.setExistencia(0);
-         this.setVenta(0);
-         this.setCompra(0);
+        this.existencia = conection.getInteger("existencia"); 
         
-
-    }
-    
-    
-   /* public void guadarRegistro() {
-        try {
-            //Conectar();
         
-            st.executeUpdate("Insert into productos (producto,descripcion,precio_compra,precio_venta,existencia)" + " values ('" + getProducto() + "','" + getDescripcion() + "','" + getCompra() + "','" + getVenta() + "','" + getExistencia() + "')");
-
-           
-
-        } catch (SQLException err) {
-            JOptionPane.showMessageDialog(null, "Error de guardar registros" + err.getMessage());
-        }
-
-    }*/
+        
+    }
+   
+    
 
     
     

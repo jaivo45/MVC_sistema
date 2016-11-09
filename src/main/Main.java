@@ -13,9 +13,9 @@ public class Main {
         CustomersView customersView = new CustomersView();
         CustomersController customersController = new CustomersController(customersModel, customersView);
         
-        Model_Clientes suppliersModel = new Model_Clientes();
-        View_Proveedor suppliersView = new View_Proveedor();
-        Controller_Proveedor suppliersController = new Controller_Proveedor(suppliersModel, suppliersView);
+        Model_clientes suppliersModel = new Model_clientes();
+        View_clientes suppliersView = new View_clientes();
+        Controller_clientes suppliersController = new Controller_clientes(suppliersModel, suppliersView);
         
         Model_prductos productsModel = new Model_prductos();
         View_productos productsView = new View_productos();
@@ -39,10 +39,4 @@ public class Main {
         MainView mainView = new MainView();
         MainController mainController = new MainController(mainModel, mainView, paneArray);
     } 
-
-    public static class Model_Proveedor {
-
-        public Model_Proveedor() {
-        }
-    }
 }
