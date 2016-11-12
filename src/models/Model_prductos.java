@@ -17,28 +17,18 @@ import net.proteanit.sql.JTableUpdateDb;
  * @author jaivo
  */
 public class Model_prductos {
- //private Connection conexion;
-    //private Statement st;
-    //private ResultSet rs;
-        private final DBConnection conection = new DBConnection(3306,"localhost", "sistema", "root", "");
+ 
+    private final DBConnection conection = new DBConnection(3306,"localhost", "sistema", "root", "");
     private int idproducto;
     private String producto;
     private String descripcion;
     private double compra;
-    private double venta;
+    public double venta;
     private int existencia;
     
-      public  DefaultTableModel tableModel = new DefaultTableModel(new String [] {"id_producto", "producto","descripcion","precio_compra","precio_venta","existencia"}, 0);
+   
     
-    public void Tabla() {
-        while (conection.moveNext()) {
-            setValues();
-            
-               tableModel.addRow(new Object []{ producto,descripcion,compra,venta,existencia});
-         
-        }
-        
-    }
+    public  DefaultTableModel tableModel = new DefaultTableModel(new String [] {"id_producto", "producto","descripcion","precio_compra","precio_venta","existencia"}, 0);
     
 
     /**
@@ -125,26 +115,7 @@ public class Model_prductos {
     public void setIdproducto(int idproducto) {
         this.idproducto = idproducto;
     }
-    
-    
-    
-    
-   /* public void Conectar() {
-        try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/sistema", "root", "");
-            st = conexion.createStatement();
-        
 
-        } catch (SQLException err) {
-             JOptionPane.showMessageDialog(null, "Error de Conexion " + err.getMessage());
-
-    }
-    }*/
-    
-    
-    
-    
-    
     public void moveNext(){
         conection.moveNext();
         setValues();
@@ -177,7 +148,7 @@ public class Model_prductos {
   
    
    public void setValues(){
-       this.idproducto=(conection.getInteger("id_producto"));
+       this.idproducto=conection.getInteger("id_producto");
         this.producto = conection.getString("producto");
         this.descripcion = conection.getString("descripcion");
         this.compra = conection.getInteger("precio_compra");
@@ -187,11 +158,31 @@ public class Model_prductos {
         
         
     }
+   public void setdatos(){
+        this.idproducto=conection.getInteger("");
+        this.producto = conection.getString("");
+        this.descripcion = conection.getString("");
+        this.compra = conection.getInteger("");
+        this.venta = conection.getInteger("");
+        this.existencia = conection.getInteger(""); 
+        
+        
+        
+    }
    
     
 
+    public void Tabla() {
+        while (conection.moveNext()) {
+            setValues();
+              tableModel.addRow(new Object []{idproducto, producto,descripcion,compra,venta,existencia});
+        }
+     }
+    
+     
     
     
-    
+     
+
 }
     

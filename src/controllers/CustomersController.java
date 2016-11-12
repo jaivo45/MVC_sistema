@@ -25,7 +25,7 @@ public class CustomersController implements ActionListener {
         this.customersView.jb_remove.addActionListener(this);
         this.customersView.jb_find.addActionListener(this);
         
-        initView();
+      //  initView();
         showRecords();
     }
 

@@ -4,6 +4,8 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import models.Model_prductos;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,46 +17,60 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
     
    
 
 public class Controller_productos implements ActionListener {
-private DBConnection conection = new DBConnection(3306,"localhost", "sistema", "root", "");
+DBConnection conection = new DBConnection(3306,"localhost", "sistema", "root", "");
+//Connection cn = conection;
+private  DefaultTableModel Model = new DefaultTableModel();
+   DefaultTableModel mytable;
+   DefaultTableModel medel;
+   private Statement st;
+   private ResultSet rs;
     Model_prductos productsModel;
     View_productos productsView;
     
     public Controller_productos(Model_prductos productsModel, View_productos productsView) {
         this.productsModel = productsModel;
         this.productsView = productsView;
-     
-      
+        this.productsView.jT_compra.addKeyListener(numeros);
+        this.productsView.jT_existencia.addKeyListener(numeros);
+        this.productsView.jT_venta.addKeyListener(numeros);
+      Botones_de_eventos();
+       init_view();
+       
+     //mostrartabla();
+    }
+    
+   public void init_view(){
+    productsModel.initValues();
+    }
+   
+   public void Botones_de_eventos(){
       this.productsView.jbtn_inicio.addActionListener(this);
       this.productsView.jbtn_anterior.addActionListener(this);
       this.productsView.jbtn_siguiente.addActionListener(this);
       this.productsView.jbtn_fin.addActionListener(this);
-       this.productsView.jB_mostrartodo.addActionListener(this);
-       this.productsView.jbtn_modificar.addActionListener(this);
-       this.productsView.jb_guarda.addActionListener(this);
-       this.productsView.jbtn_quitar.addActionListener(this);
-       this.productsView.jbtn_buscar.addActionListener(this);
-       this.productsView.jb_nuevo.addActionListener(this);         
-      
-    //showData();
-     init_view();
-     
-    }
-    
-   public void init_view(){
-// para mostrar la interfaz
-
-       productsModel.initValues();
-        //showValues();
-}
+      this.productsView.jbtn_modificar.addActionListener(this);
+      this.productsView.jb_guarda.addActionListener(this);
+      this.productsView.jbtn_quitar.addActionListener(this);
+      this.productsView.jbtn_buscar.addActionListener(this);
+      this.productsView.jb_nuevo.addActionListener(this);         
+      this.productsView.jT_venta.addActionListener(this);
+   }
    
+   
+   public void mostrartabla(){
+     init_view();
+     showData(); 
+   }
    
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==productsView.jb_guarda){
-           guadarRegistro();
+           GuadarRegistro();
            JOptionPane.showMessageDialog(null, "guardado exitosamente ");
            NuevoRegistro();
         }
@@ -68,14 +84,26 @@ private DBConnection conection = new DBConnection(3306,"localhost", "sistema", "
            sigiente();
         }
         else if(e.getSource()==productsView.jbtn_fin){
-          ultimo();  }
+          ultimo(); 
+        }
+     
+         else if(e.getSource()==productsView.jbtn_buscar){
+         
+          
+          actualizar_tabla();
+          showTabla();
+         }
+         
+         
         
         else if(e.getSource()==productsView.jbtn_quitar){
-          
+            
+            JOptionPane.showMessageDialog(null, "Borrar", "Atencion el registro se borrara", JOptionPane.WARNING_MESSAGE);
+            borrar();
+            JOptionPane.showMessageDialog(null, "registro borrado exitosamente ");
+            NuevoRegistro();
         }
-        else if (e.getSource()== productsView.jB_mostrartodo){
-           // mostrar_todo();
-    }
+     
         else if (e.getSource()== productsView.jbtn_modificar){
            editar();
            NuevoRegistro();
@@ -88,7 +116,13 @@ private DBConnection conection = new DBConnection(3306,"localhost", "sistema", "
     }
     
        
-           
+        public void  actualizar_tabla(){
+         productsView.j_Tabla.setModel(productsModel.tableModel);
+         this.productsModel.Tabla();
+         this.productsModel.setValues();
+        }
+        
+       
        
       
         
@@ -116,6 +150,7 @@ private DBConnection conection = new DBConnection(3306,"localhost", "sistema", "
         
     }
     
+  
         
     private void showValues(){
         
@@ -128,14 +163,29 @@ private DBConnection conection = new DBConnection(3306,"localhost", "sistema", "
     productsView.jT_venta.setText(""+this.productsModel.getVenta());
     }
 
-    private void showData() {
+    
+     private void showData() {
         productsView.j_Tabla.setModel(productsModel.tableModel);
-        productsModel.Tabla();
-        productsModel.setValues();
+         this.productsModel.Tabla();
+          //this.productsModel.setValues();
+     }
+    
+     public void showTabla() {
+      productsView.j_Tabla.setModel(productsModel.tableModel);
+      
     }
+     
+     
     
-    
-    
+    public void borrar() {
+        Integer producto=Integer.parseInt(this.productsView.jT_Idproducto.getText());
+        String remove = "delete from productos where id_producto=" +this.productsView.jT_Idproducto.getText();
+        conection.executeUpdate(remove);      
+       // this.productsModel.setValues();
+       
+        productsModel.initValues();
+        showValues();
+    }
     
     
     
@@ -150,22 +200,10 @@ private DBConnection conection = new DBConnection(3306,"localhost", "sistema", "
          
         
     }
-    /* public void mostrar_todo (){
-         DefaultTableModel  dm = new DefaultTableModel();
-         dm.addColumn("Producto");
-         dm.addColumn("Descripcion");
-         dm.addColumn("Precio compra");
-         dm.addColumn("Precio venta");
-         dm.addColumn("Existencia");
-         productsView.j_Tabla.setModel(dm);
-         //String consulta="";
-         //consulta = "Select * from productos where Id_producto='"+id+"'";
-         
-     }
-*/
+    
+
      
-     
-     public void guadarRegistro() {        
+     public void GuadarRegistro() {        
        
              String producto=this.productsView.jT_producto.getText();
              String descripcion=this.productsView.jT_descripcion.getText();
@@ -173,6 +211,7 @@ private DBConnection conection = new DBConnection(3306,"localhost", "sistema", "
              Integer venta=Integer.parseInt(productsView.jT_venta.getText());
              Integer existencia=Integer.parseInt(productsView.jT_existencia.getText());
             
+             
 
             conection.executeUpdate("insert into productos (producto,descripcion,precio_compra,precio_venta,existencia)"+" values "
                     + "('"+producto+"','"+descripcion+"','"+compra+"','"+venta+"','"+existencia+"');"); 
@@ -198,13 +237,33 @@ private DBConnection conection = new DBConnection(3306,"localhost", "sistema", "
         showValues();
 
      } 
+     
+   public  KeyListener numeros = new KeyListener(){
+        @Override
+        public void keyTyped(KeyEvent e) {
+            
+         char valida = e.getKeyChar();
+        
+     if(((valida< '0')|| (valida>'9')) &&(valida != KeyEvent.VK_BACK_SPACE)&&(valida !='.'))
+           {
+             e.consume();
+           }
+          }
+         
 
-     
-     
-     
-     
-     
-     
-     
-     
+        @Override
+        public void keyPressed(KeyEvent e) {
+           // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+           //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        
+    };
+    
 }
+
+
+

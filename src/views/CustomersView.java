@@ -167,7 +167,7 @@ public class CustomersView extends javax.swing.JPanel {
         jtf_city.setForeground(new java.awt.Color(255, 255, 255));
         jtf_city.setBorder(null);
 
-        jb_add.setBackground(new java.awt.Color(0, 121, 107));
+        jb_add.setBackground(new java.awt.Color(204, 0, 0));
         jb_add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_user.png"))); // NOI18N
         jb_add.setBorder(null);
         jb_add.setBorderPainted(false);

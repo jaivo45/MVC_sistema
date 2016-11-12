@@ -57,18 +57,14 @@ public class MainView extends javax.swing.JFrame {
 
         jLabel1.setText("TODO LO QUE BUSCA LO TENEMOS");
 
-        jmb_menu.setBackground(new java.awt.Color(0, 121, 107));
         jmb_menu.setBorder(null);
 
-        jm_options.setBackground(new java.awt.Color(0, 121, 107));
-        jm_options.setBorder(null);
-        jm_options.setForeground(new java.awt.Color(255, 255, 255));
+        jm_options.setBackground(new java.awt.Color(244, 244, 244));
+        jm_options.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jm_options.setText("BIENVENIDO.");
         jm_options.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
-        jmi_login.setBackground(new java.awt.Color(0, 121, 107));
         jmi_login.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jmi_login.setForeground(new java.awt.Color(255, 255, 255));
         jmi_login.setText("login");
         jmi_login.setBorder(null);
         jmi_login.addActionListener(new java.awt.event.ActionListener() {
@@ -78,9 +74,7 @@ public class MainView extends javax.swing.JFrame {
         });
         jm_options.add(jmi_login);
 
-        jmi_customers.setBackground(new java.awt.Color(0, 121, 107));
         jmi_customers.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jmi_customers.setForeground(new java.awt.Color(255, 255, 255));
         jmi_customers.setText("Clientes");
         jmi_customers.setBorder(null);
         jmi_customers.addActionListener(new java.awt.event.ActionListener() {
@@ -90,23 +84,17 @@ public class MainView extends javax.swing.JFrame {
         });
         jm_options.add(jmi_customers);
 
-        jmi_suppliers.setBackground(new java.awt.Color(0, 121, 107));
         jmi_suppliers.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jmi_suppliers.setForeground(new java.awt.Color(255, 255, 255));
         jmi_suppliers.setText("Proveedores");
         jmi_suppliers.setBorder(null);
         jm_options.add(jmi_suppliers);
 
-        jmi_products.setBackground(new java.awt.Color(0, 121, 107));
         jmi_products.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jmi_products.setForeground(new java.awt.Color(255, 255, 255));
         jmi_products.setText("Productos");
         jmi_products.setBorder(null);
         jm_options.add(jmi_products);
 
-        jmi_ventas.setBackground(new java.awt.Color(0, 121, 107));
         jmi_ventas.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jmi_ventas.setForeground(new java.awt.Color(255, 255, 255));
         jmi_ventas.setText("ventas");
         jmi_ventas.setBorder(null);
         jmi_ventas.addActionListener(new java.awt.event.ActionListener() {
@@ -116,9 +104,7 @@ public class MainView extends javax.swing.JFrame {
         });
         jm_options.add(jmi_ventas);
 
-        jmi_exit.setBackground(new java.awt.Color(0, 121, 107));
         jmi_exit.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jmi_exit.setForeground(new java.awt.Color(255, 255, 255));
         jmi_exit.setText("Salir");
         jmi_exit.setBorder(null);
         jm_options.add(jmi_exit);
@@ -131,23 +117,19 @@ public class MainView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(333, 333, 333)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(55, 55, 55)
-                .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(11, 11, 11)
+                .addComponent(jLabel2))
         );
 
         pack();
