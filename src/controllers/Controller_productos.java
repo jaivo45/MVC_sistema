@@ -19,12 +19,15 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-    
+import models.Conexion;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
    
 
 public class Controller_productos implements ActionListener {
 DBConnection conection = new DBConnection(3306,"localhost", "sistema", "root", "");
 //Connection cn = conection;
+Conexion conn = new Conexion();
 private  DefaultTableModel Model = new DefaultTableModel();
    DefaultTableModel mytable;
    DefaultTableModel medel;
@@ -39,8 +42,8 @@ private  DefaultTableModel Model = new DefaultTableModel();
         this.productsView.jT_compra.addKeyListener(numeros);
         this.productsView.jT_existencia.addKeyListener(numeros);
         this.productsView.jT_venta.addKeyListener(numeros);
-      Botones_de_eventos();
-       init_view();
+        Botones_de_eventos();
+        init_view();
        
      //mostrartabla();
     }
@@ -60,6 +63,7 @@ private  DefaultTableModel Model = new DefaultTableModel();
       this.productsView.jbtn_buscar.addActionListener(this);
       this.productsView.jb_nuevo.addActionListener(this);         
       this.productsView.jT_venta.addActionListener(this);
+      this.productsView.jB_reporteproductos.addActionListener(this);
    }
    
    
@@ -94,6 +98,11 @@ private  DefaultTableModel Model = new DefaultTableModel();
           showTabla();
          }
          
+         else if(e.getSource()==productsView.jB_reporteproductos){
+         
+         productos_existentes();
+         }
+         
          
         
         else if(e.getSource()==productsView.jbtn_quitar){
@@ -114,6 +123,22 @@ private  DefaultTableModel Model = new DefaultTableModel();
            JOptionPane.showMessageDialog(null, "llene un nuevo registro ");
     }
     }
+    
+    
+     public void productos_existentes(){
+       try {
+                 conn.conectar();
+                    String dir = "C:\\Users\\javier\\Desktop\\MVC_sistema\\src\\views\\reporteproductos.jrxml";
+                    JasperReport reporteJasper = JasperCompileManager.compileReport(dir);
+                    JasperPrint mostrarReporte = JasperFillManager.fillReport(reporteJasper, null, conn.getConn());
+                    JasperViewer.viewReport(mostrarReporte);
+
+                } catch (JRException ex) {
+                    Logger.getLogger(Controller_productos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+   }
+    
+    
     
        
         public void  actualizar_tabla(){

@@ -5,10 +5,19 @@
  */
 package controllers;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author javier
  */
-public class Controller_login {
+
+    public class Controller_login implements ActionListener {
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

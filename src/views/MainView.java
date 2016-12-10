@@ -31,8 +31,10 @@ public class MainView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jmb_menu = new javax.swing.JMenuBar();
-        jm_options = new javax.swing.JMenu();
+        jm_login = new javax.swing.JMenu();
         jmi_login = new javax.swing.JMenuItem();
+        jmi_exit1 = new javax.swing.JMenuItem();
+        jm_options = new javax.swing.JMenu();
         jmi_customers = new javax.swing.JMenuItem();
         jmi_suppliers = new javax.swing.JMenuItem();
         jmi_products = new javax.swing.JMenuItem();
@@ -46,7 +48,7 @@ public class MainView extends javax.swing.JFrame {
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,10 +61,10 @@ public class MainView extends javax.swing.JFrame {
 
         jmb_menu.setBorder(null);
 
-        jm_options.setBackground(new java.awt.Color(244, 244, 244));
-        jm_options.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jm_options.setText("BIENVENIDO.");
-        jm_options.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jm_login.setBackground(new java.awt.Color(244, 244, 244));
+        jm_login.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jm_login.setText("login");
+        jm_login.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
         jmi_login.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jmi_login.setText("login");
@@ -72,7 +74,19 @@ public class MainView extends javax.swing.JFrame {
                 jmi_loginActionPerformed(evt);
             }
         });
-        jm_options.add(jmi_login);
+        jm_login.add(jmi_login);
+
+        jmi_exit1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jmi_exit1.setText("Salir");
+        jmi_exit1.setBorder(null);
+        jm_login.add(jmi_exit1);
+
+        jmb_menu.add(jm_login);
+
+        jm_options.setBackground(new java.awt.Color(244, 244, 244));
+        jm_options.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jm_options.setText("BIENVENIDO...");
+        jm_options.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
         jmi_customers.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jmi_customers.setText("Clientes");
@@ -129,7 +143,8 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(jLabel2))
+                .addComponent(jLabel2)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,13 +154,13 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jmi_customersActionPerformed
 
-    private void jmi_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_loginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmi_loginActionPerformed
-
     private void jmi_ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ventasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jmi_ventasActionPerformed
+
+    private void jmi_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_loginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_loginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,10 +201,12 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel;
-    private javax.swing.JMenu jm_options;
+    public javax.swing.JMenu jm_login;
+    public javax.swing.JMenu jm_options;
     private javax.swing.JMenuBar jmb_menu;
     public javax.swing.JMenuItem jmi_customers;
     public javax.swing.JMenuItem jmi_exit;
+    public javax.swing.JMenuItem jmi_exit1;
     public javax.swing.JMenuItem jmi_login;
     public javax.swing.JMenuItem jmi_products;
     public javax.swing.JMenuItem jmi_suppliers;
